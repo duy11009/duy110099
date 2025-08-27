@@ -1,2 +1,2 @@
 # duy110099
-giới thiệu sản phẩm
+giới thiệu chi tiết về luffy
