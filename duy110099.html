@@ -85,3 +85,190 @@
     </script>
 </body>
 </html>
+
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thông Tin Về Luffy và Cửa Hàng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #ff4747;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .shop {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .item:last-child {
+            border-bottom: none;
+        }
+        .item button {
+            padding: 6px 12px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .item button:hover {
+            background-color: #004999;
+        }
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        #orderForm {
+            display: none;
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 300px;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        #orderForm input, #orderForm button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+        }
+        #orderForm button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+        }
+        #orderForm button:hover {
+            background-color: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Monkey D. Luffy - Vua Hải Tặc Tương Lai</h1>
+</header>
+
+<div class="content">
+    <h2>Thông tin chi tiết</h2>
+    <p><strong>Tên đầy đủ:</strong> Monkey D. Luffy</p>
+    <p><strong>Biệt danh:</strong> Mũ Rơm Luffy</p>
+    <p><strong>Ước mơ:</strong> Trở thành Vua Hải Tặc</p>
+    <p><strong>Trái Ác Quỷ:</strong> Trái Hito Hito no Mi, model: Nika (loại Zoan thần thoại)</p>
+    <p><strong>Nhóm:</strong> Băng Hải Tặc Mũ Rơm</p>
+    <p><strong>Người sáng lập:</strong> Eiichiro Oda</p>
+    <p>Luffy là nhân vật chính trong bộ truyện nổi tiếng One Piece. Với ước mơ trở thành Vua Hải Tặc, cậu đã phiêu lưu khắp Grand Line, chiến đấu với những kẻ thù mạnh mẽ và kết bạn với những đồng đội trung thành.</p>
+
+    <h2>Cửa hàng của Luffy</h2>
+    <div class="shop">
+        <div class="item">
+            <p><strong>Mũ Rơm Chính Hãng</strong> - 100.000 Beli</p>
+            <p>Còn lại: <span id="item1">10</span></p>
+            <button onclick="buy('item1', 'Mũ Rơm Chính Hãng')">Mua</button>
+        </div>
+        <div class="item">
+            <p><strong>Trái Ác Quỷ (mô hình)</strong> - 500.000 Beli</p>
+            <p>Còn lại: <span id="item2">5</span></p>
+            <button onclick="buy('item2', 'Trái Ác Quỷ (mô hình)')">Mua</button>
+        </div>
+        <div class="item">
+            <p><strong>Áo Hải Tặc Mũ Rơm</strong> - 150.000 Beli</p>
+            <p>Còn lại: <span id="item3">8</span></p>
+            <button onclick="buy('item3', 'Áo Hải Tặc Mũ Rơm')">Mua</button>
+        </div>
+        <div class="item">
+            <p><strong>Poster Truy Nã Luffy</strong> - 50.000 Beli</p>
+            <p>Còn lại: <span id="item4">20</span></p>
+            <button onclick="buy('item4', 'Poster Truy Nã Luffy')">Mua</button>
+        </div>
+    </div>
+
+    <!-- Biểu mẫu đặt hàng -->
+    <div id="orderForm">
+        <h3>Thông tin đặt hàng</h3>
+        <input type="text" id="customerName" placeholder="Tên của bạn" required>
+        <input type="email" id="customerEmail" placeholder="Email của bạn" required>
+        <input type="text" id="productName" readonly>
+    
+    <button onclick="sendOrder()">Gửi đơn hàng</button>
+    </div>
+</div>
+<footer>
+    <p>Liên hệ cửa hàng qua Gmail: <strong>abctrung1233456@gmai.com</strong></p>
+</footer>
+
+<script>
+    let currentItemId = "";
+    let currentProductName = "";
+
+    function buy(itemId, productName) {
+        const item = document.getElementById(itemId);
+        let count = parseInt(item.innerText);
+        if (count > 0) {
+            count--;
+            item.innerText = count;
+            currentItemId = itemId;
+            currentProductName = productName;
+            document.getElementById("productName").value = productName;
+            document.getElementById("orderForm").style.display = "block";
+        } else {
+            alert("Hết hàng rồi bạn ơi!");
+        }
+    }
+
+    function sendOrder() {
+        const name = document.getElementById("customerName").value;
+        const email = document.getElementById("customerEmail").value;
+        const product = document.getElementById("productName").value;
+
+        if (name === "" || email === "") {
+            alert("Vui lòng điền đầy đủ thông tin.");
+            return;
+        }
+
+        const mailtoLink = `mailto:abctrung1233456@gmai.com?subject=Đơn hàng mới từ ${name}&body=Khách hàng: ${name}%0AEmail: ${email}%0ASản phẩm: ${product}`;
+        window.location.href = mailtoLink;
+
+        document.getElementById("orderForm").style.display = "none";
+        document.getElementById("customerName").value = "";
+        document.getElementById("customerEmail").value = "";
+    }
+</script>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chính</title>
+</head>
+<body>
+    <h1>🌐 Các trang liên kết</h1>
+    <ul>
+        <li><a href="duy11008.html">Trang Duy11008</a></li>
+        <li><a href="duy11007.html">Trang Duy11007</a></li>
+        <li><a href="duy11006.html">Trang Duy11006</a></li>
+        <li><a href="duy11005.html">Trang Duy11005</a></li>
+    </ul>
+</body>
+</html>
