@@ -96,3 +96,20 @@
 </body>
 </html>
 
+<script>
+    function checkLogin() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const errorMessage = document.getElementById("error-message");
+
+        // Nếu đăng nhập đúng thì chuyển đến duy110099.html
+        if (username === "duy11009" && password === "11009") {
+            window.location.href = "duy110099.html";  // Thay đổi link ở đây
+            return false;  // Ngăn form submit mặc định
+        } else {
+            errorMessage.textContent = "Tên đăng nhập hoặc mật khẩu không đúng.";
+            return false;  // Ngăn form submit mặc định
+        }
+    }
+</script>
+
